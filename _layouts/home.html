@@ -1,0 +1,27 @@
+---
+layout: default
+columns: 4
+---
+<header id="search">
+  <span class="oi" data-glyph="magnifying-glass"></span>
+  <input type="text">
+</header>
+
+<nav>
+  {% for this_column in (0..layout.columns) limit:layout.columns %}
+  <div class="column">
+    {% for post in site.posts %}
+      {% assign post_column = forloop.index0 | modulo: 4 %}
+      {% if post_column == this_column %}
+        <section class="post {{ post.category }} listing">
+          {% if post.thumbnail %}
+            <img src="/content/{{ post.thumbnail }}">
+          {% endif %}
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <span>{{ post.excerpt }}</span>
+        </section>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endfor %}
+</nav>

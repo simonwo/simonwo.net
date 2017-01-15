@@ -1,0 +1,15 @@
+---
+title: tilefx.js
+category: code
+excerpt: Silly JavaScript image effects using divs as pixels
+link: https://www.github.com/simonwo/tilefx
+meta:
+  year: 2012
+  language: JavaScript + jQuery
+  license: MIT
+---
+This jQuery plugin can be used to animate images in various ways by sub-dividing them into smaller pixels. I originally wrote it out of boredom (yeah, check me out) but then it came to be used to do silly things with the site logo and placeholder screen when there was one.
+
+The general idea is that any image you want to animate is secretly divided into div elements which can then be faded in or out at will. This can be combined into sequences, such as wipes that will look vaguely reminiscent of PowerPoint 95.
+
+If you’re interested, you can [get the code on GitHub](https://github.com/simonwo/tilefx "simonwo/tilefx - GitHub"), where you’ll also find usage information. It’s still a work-in-progress – contributions are welcomed.

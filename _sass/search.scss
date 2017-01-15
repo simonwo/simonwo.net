@@ -1,0 +1,36 @@
+header#search {
+  * {
+    float: left;
+    font-size: 14pt;
+  }
+
+  input {
+    font-family: sans-serif;
+    padding-bottom: 0;
+    margin-left: 10px;
+    width: 90%;
+    border: 0;
+  }
+
+  .oi {
+    line-height: 0;
+  }
+  
+  &.zeroresults {
+    background-color: #CC2F2F;
+
+    * {
+      background-color: inherit;
+      color: white;
+    }
+  }
+}
+
+.included {
+  box-shadow: 0 0 10px 0 white;
+}
+
+.excluded {
+  box-shadow: none;
+  opacity: 0.5;
+}

@@ -1,0 +1,194 @@
+---
+---
+@import "external-links";
+@import "listing";
+@import "header";
+@import "clearfix";
+@import "search";
+
+html {
+  background-color: #000000;
+  background-image: url("/assets/grid.png");
+  background-position: 45px 8px;
+  background-repeat: repeat;
+}
+
+body {
+  font-family: 'Helvetica Neue',Arial,sans-serif;
+  font-size: 14px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 710px;
+  width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+section, header {
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+main {
+  @include tag-external-links();
+}
+
+section > *, header {
+  background-color: #FFFFFF;
+  padding: 10px;
+}
+
+section.post {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border-left-style: solid;
+  border-left-width: 10px;
+  padding: 10px;
+  
+  * {
+    padding: 0;
+  }
+  
+  h1 {
+    margin: 0 0 5px;
+  }
+
+  time {
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+
+  .info {
+    border-left-color: inherit;
+    border-left-style: solid;
+    border-left-width: 1px;
+    float: right;
+    font-size: 14px;
+    margin: 0 0 10px 20px;
+    padding-left: 5px;
+    width: 180px;
+  }
+
+  li {
+    margin-left: 20px;
+  }
+
+  pre {
+    background: none repeat scroll 0 0 #D3D3D3;
+    overflow: auto;
+    padding: 15px !important;
+  }
+
+  @import "embed";
+}
+
+
+.info {
+  .key:after {
+    content: ":";
+  }
+  .key {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .value {
+    margin-bottom: 10px;
+  }
+}
+
+header {
+  @include clearfix();
+
+  #header-logo {
+    display: block;
+    float: left;
+    width: 25%;
+    max-width: 100px;
+    margin-bottom: -3px;
+  
+    img {
+      border-radius: 5px;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  #header-text {
+    float: right;
+    text-align: right;
+    line-height: 1.15em;
+    width: 70%;
+    max-width: 270px;
+  }
+}
+
+
+$BLUE   : #265CFF;
+$RED    : #DC322F;
+$YELLOW : #FFBF00;
+$GREEN  : #00A60D;
+
+/* To-do: make this a parameterised include */
+.code { border-left-color: $BLUE; }
+.technical { border-left-color: $RED; }
+.stuff { border-left-color: $YELLOW; }
+.science { border-left-color: $GREEN; }
+
+.code a.download-btn { border-color: $BLUE; }
+.technical a.download-btn { border-color: $RED; }
+.stuff a.download-btn { border-color: $YELLOW; }
+.science a.download-btn { border-color: $GREEN; }
+
+.download-btn {
+  border-style: solid;
+  border-width: 1px 1px 1px 5px;
+  color: #000000;
+  float: right;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.3em;
+  margin-top: -50px;
+  padding: 5px 0;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 180px;
+  
+  span {
+    display: block;
+    font-size: 10px;
+    text-transform: none;
+  } 
+  
+  &:hover {
+    color: #FFFFFF;
+  }
+}
+.code a.download-btn:hover { background-color: $BLUE; }
+.technical a.download-btn:hover { background-color: $RED; }
+.stuff a.download-btn:hover { background-color: $YELLOW; }
+.science a.download-btn:hover { background-color: $GREEN; }
+
+.b {
+  font-family: 'AlteHaasGroteskBold',Arial,sans-serif;
+  font-weight: normal;
+}
+p {
+  line-height: 1.6em;
+}
+footer {
+  border-top: 1px solid #FFFFFF;
+  clear: both;
+  color: #FFFFFF;
+  font-size: 12px;
+  margin-top: 30px;
+  padding-top: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.aligncenter {
+  display: block;
+  margin: auto;
+}

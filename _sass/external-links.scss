@@ -1,0 +1,7 @@
+@mixin tag-external-links() {
+  a[href^="http"]::after {
+    font-family: "Icons";
+    font-size: 0.7em;
+    content: "\00a0\00a0\e064";
+  }
+}

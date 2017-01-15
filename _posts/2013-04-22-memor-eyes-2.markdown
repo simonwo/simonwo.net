@@ -1,0 +1,15 @@
+---
+title: memor-eyes 2
+category: stuff
+excerpt: High-octance puzzle action that will take your visual cortex, break it's back, and make it humble.
+thumbnail: memor-eyes2.png
+meta:
+  year: 2008
+  language: Adobe Flash + Actionscript 2
+---
+
+{% include embed.html content='memor-eyes2.swf' width='680px' height='560px' %}
+
+This is a memory game I made in Flash. The concept is pretty simple – I was more going for quality of execution. I think I did quite well as it still looks reasonably nice by today’s standards. I did make an earlier version (i.e. memor-eyes 1) but I hope it doesn’t exist anywhere on the Internet because it was awful. This one however is still good for a bit of distraction once in a while.
+
+Music robbed from _Ape Escape_.

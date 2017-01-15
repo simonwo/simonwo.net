@@ -1,0 +1,47 @@
+$COLUMN_WIDTH: 160px;
+$COLUMN_PADDING: 10px;
+$COLUMN_MARGIN: 10px;
+$COLUMN_TOTAL_WIDTH: $COLUMN_WIDTH + $COLUMN_PADDING + $COLUMN_MARGIN;
+
+nav {
+  .column {
+    float: left;
+    margin-right: $COLUMN_MARGIN;
+    padding-left: $COLUMN_PADDING;
+    position: relative;
+    width: $COLUMN_WIDTH;
+   
+    > * {
+      margin-left: -$COLUMN_MARGIN;
+      margin-bottom: $COLUMN_MARGIN;
+    }
+
+    section {
+      a {
+        font-weight: bold;
+        display: block;
+      }
+
+      img {
+        max-width: 100%;
+      }
+    }
+  
+    &:last-of-type {
+      margin-right: 0;
+    }
+  
+    @mixin no-zero-margin($column) {
+      @media (max-width: #{$COLUMN_TOTAL_WIDTH * $column}) {
+        &:nth-of-type(#{$column}) {
+          margin-right: 0;
+        }
+      }
+    }
+  
+    @include no-zero-margin(1);
+    @include no-zero-margin(2);
+    @include no-zero-margin(3);
+    @include no-zero-margin(4);
+  }
+}

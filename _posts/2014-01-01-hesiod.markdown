@@ -1,0 +1,174 @@
+---
+title: "Hesiod: storing user data in the DNS"
+excerpt: A comprehensive guide on using the DNS as a lightweight directory store for user data and more
+category: technical
+---
+As anyone who is remotely familiar with Unix knows, many little features of a Unix system’s structure betray it’s history as an OS designed for use with mainframes. They may know that the X Window System, for example, is split into a strict client-server model, which makes a lot of sense if you have a bunch of underpowered workstations connecting to a vast supercomputer. And they may also know of Unix’s traditional flat file user management, with a simple database of users and groups stored in human-readable plain text. For a mainframe, this is clearly a simple yet effective solution. It’s easy to understand and maintain.
+
+These historical considerations don’t make much sense, however, when you apply Unix to a networked desktop environment, where each user uses the processing power and memory of the machine sitting in front of them, and only connects to a central server for shared files or network resources like printers. Suddenly a client-server model for a windowing system seems like overkill. For individuals or small groups of machines, the flat file user management continues to work quite effectively. Problems arise, however, when you want centralised user management on a Unix environment – suddenly flat files rsyncd around is not a very appetising (or elegant) prospect.
+
+Enter LDAP, the traditional solution to this issue. LDAP, which stands for Lightweight Directory Aceess Protocol, was conceived as a generic centralised object store which could serve user and group data over the network. Over time, LDAP has become an extremely complex beast: about as opaque as data storage gets, difficult to manage and maintain, and also not particularly reliable from either a software or system perspective.
+
+In my time working for database start-up [GenieDB](https://www.crunchbase.com/organization/geniedb), we had a lot of problems with LDAP. So, we decided to investigate other user management systems and after looking around at the different options, we decided to opt for a little known of system called Hesiod. To put it simply, **Hesiod is DNS-based directory store that allows very simple, robust, and decentralised access to user data and more at the expense of some security**. It’s not a good fit for all applications but if you trust all the users on your network or operate a secure LAN or air-gap system then it might make your life a bit simpler!
+
+I genuinely think Hesiod is a great system when used correctly. Unfortunately, what information I’ve found on-line about Hesiod is very sparse, so I’ve endeavoured to collect as much of it here as I can.
+
+## A Brief History of Hesiod
+
+Hesiod was originally built by Project Athena, the MIT-driven workforce that was tasked with bringing network-linked workstations to every department on the MIT campus, along with the now-commonplace requirement of centralized user and security management. They were one of the first groups to solve the problem of networked user management on Unix, and in doing so they developed Kerberos, the password-less authentication system, and Hesiod, the DNS-based store.
+
+Project Athena still exists as an entity today, but the current generation has apparently decided to turn their backs on their offspring and instead focus on LDAP – the fools!
+
+## Hesiod Technical Description
+
+As mentioned previously, Hesiod is a storage system that makes use of the Domain Name System (DNS), the same technology that runs a lot of the Internet. DNS is essentially an network-wide key-value database that translates the name you type into your browser (i.e. [www.google.com](http://www.google.com/)) into the numerical address that actually identifies the computer you are going to connect to (i.e. 67.125.225.180). Hesiod uses this technology to store user data instead of IP addresses. In fact, Hesiod can store much more than just user data; it is a general framework for storing all kinds of configuration options, limited only by the availability of systems that can parse the DNS records.
+
+DNS is by its very nature a database that is usually quite slow to update. Typical DNS zone entries for websites can specify a TTL (time-to-live) span of 72 hours or more – this means that any changes to the database can’t be guaranteed to take effect everywhere until this long after they’re made. This means that Hesiod is primarily of use where data is not expected to change very often but needs to exist in a distributed manner. A good example of this would be a small company that has offices in multiple countries or continents.
+
+Hesiod entries typically exist in their own DNS zone and are further subdivided by type, which specifies what kind of system database the item is a member of. They follow the format:
+
+```
+name.type.LHS.RHS
+```
+
+where the LHS is the name of the Hesiod sub-domain (by default this is normally `ns`), and the RHS is the top-level domain that it is attached to. An example:
+
+```
+simon.passwd.ns.simonwo.net
+```
+
+which would specify an entry called `simon` that represents some user data (specified by the `passwd` type – more on this later) existing in the Hesiod zone `ns` for the domain `simonwo.net`. The Hesiod database is updated by simply modifying the relevant zone file entries themselves.
+
+The other half of the Hesiod system is the Hesiod binary that must be installed and configured on every instance that you want to run Hesiod on. It’s a small binary that is basically an interface layer that identifies the correct DNS entry and returns the relevant information. It integrates into the NSS system so that system lookups for users and groups work correctly. Hesiod binaries are available for install on most Linux distributions and are installed by default on some versions of BSD. Hesiod does not run as a daemon but will be instantiated as required when requests are made.
+
+### Configuring your DNS zones
+
+In order to use Hesiod, you will need to have access to a DNS zone file for a domain zone. You don’t necessarily need to be running your own DNS server, but if you want to limit the availability of entries to just your internal network (for security or privacy), then it is advisable. This guide will not assume either situation and will leave all the quantitative DNS server configuration up to you as required steps vary. If you are want to use Hesiod but don’t own a domain name, you may like to look [here](http://cr.yp.to/djbdns/dot-local.html) for information on picking a suitable internal zone name.
+
+Getting your data into Hesiod is as simple as writing a DNS zone file, because that’s all you have to do. If you’ve never done that before then don’t worry, because they tend to follow the fairly simple flat-file format beloved of Unix administrators. You can get a great introduction to the basics of configuring DNS [here](http://www.tldp.org/HOWTO/DNS-HOWTO.html "DNS HOWTO"). Make sure you give at least section 5 a good read if you don’t really know what you’re doing.
+
+Assuming that you now know what a DNS zone is and how to configure one for the DNS server of your choice, you need to set one up to store your Hesiod data. Configure the zone somewhere on your domain (or internal zone name) using a prefix – many people use ‘ns’ or ‘hesiod’. Personally, I think there’s good reason to choose something more obscure just in case this zone somehow becomes public facing – it makes it more difficult for any potential attackers who might be trying all the defaults. You can also use different zone names to effortlessly give different machines (or sets of machines) different configuration. Here’s an example.
+
+```
+zone "hesiod.simonwo.net" {
+    type master;
+    file "hesiod.simonwo.net.db";
+}
+```
+
+If you know what you’re doing, feel free to add or change options here – Hesiod itself doesn’t have any specific requirements. Now, onto the main zonefile itself. Create a file with the same name as you specified in the last step, add one `TXT` entry for each Hesiod name.type you need, and finish it off with the standard zonefile header. Here’s an example.
+
+```
+; hesiod.simonwo.net.db
+$TTL 1H
+@       IN      SOA     hesiod.simonwo.net. (
+                        201401011       ; serial, todays date + todays serial #
+                        8H              ; refresh, seconds
+                        2H              ; retry, seconds
+                        4W              ; expire, seconds
+                        1D )            ; minimum, seconds
+                NS      ns1.simonwo.net ; the address of the name server 
+; users
+simon.passwd    IN    TXT    "simon:x:1000:1000:Simon Worthington:/home/simon:/bin/dash"
+1000.uid        IN    CNAME  simon.passwd
+
+; groups
+simon.group     IN    TXT    "staff:x:1000"
+1000.gid        IN    CNAME  staff.group
+
+; group memberships
+simon.grplist   IN    TXT    "simon:1000:root:0:staff:50:users:100"
+```
+
+And some more esoteric examples from Project Athena itself:
+
+```
+; filesystem mounts
+matlab.filsys     IN    TXT    "AFS /afs/athena.mit.edu/software/matlab w /mit/matlab"
+spice.filsys      IN    TXT    "NFS /u1/lockers/spice H-P-LOVECRAFT.MIT.EDU w /mit/spice"
+```
+
+There are quite a few things to note here. Firstly, notice the different _name.type_ pairs and the function that each type serves. The function and format of each of the types is summarised in the table below. This list is enumerated from the [hesinfo man page](http://linux.die.net/man/1/hesinfo "hesinfo(1)") with additional notes from various sources.
+
+| Name | Type | Format | Function | Ref. |
+|-
+| _username_ | **passwd** | A line from _/etc/passwd_| User data keyed by username| 
+| _userid_| **uid**| A line from _/etc/passwd_| User data keyed by user id|
+| _groupname_| **group**| A line from _/etc/groups_| Group data keyed by group name|
+| _groupid_| **gid**| A line from _/etc/groups_| Group data keyed by group id| 
+| _username_| **grplist**| Colon-seperated pairs of _groupname_:_gid_| Group memberships for the named user| 
+| _username_| **pobox**, **maildrop**| _mailbox-type_ (i.e. POP or IMAP) _server-hostname_ _server-username_| How to connect to this user's mailbox. Can be used with [`sendmail`](https://web.archive.org/web/20160322060357/http://etutorials.org/Server+Administration/Sendmail/Part+I+Build+and+Install/Chapter+3.+Tune+sendmail+with+Compile-Time+Macros/HESIOD/) and `postfix` but your distribution may not compile support for them by default|[[2]](https://github.com/achernya/hesiod/blob/master/man/hesiod_getmailhost.3)|
+| _mountname_| **filsys**| Space-seperated list. First item is the _filesystem-type_ (AFS, NFS and potentially others). Further items are dependent on which type but generally follow the form _source-location […] flags_ (i.e. read/write) _destination-mount-point_| Used to provide remote mount information. Used extensively by the MIT locker system and also available in [Ubuntu `autofs` tool](https://launchpad.net/ubuntu/hardy/+package/autofs-hesiod)|[[3]](http://www-afs.secure-endpoints.com/afs/sipb/project/cluedumps/lockers/athena-lockers.pdf "Athena Lockers")| 
+| _hostname_| **cluster**| _key-name key-value [version-number] [version-flags]_| Used pretty much exclusively by Project Athena at MIT. Returns workstation configuration information which is parsed by [getcluster](http://debathena.mit.edu/manpages/www/manpages/karmic/man1/getcluster.1.html). Multiple records can be specified to return as many items as required.|[[4]](http://kb.mit.edu/confluence/pages/viewpage.action?pageId=7767544 "Q: What is Hesiod cluster information and how is it used by Debathena?")| 
+| _service-type_| **sloc**| _hostname_| Network location for provider of the "service" specified. Probably useful for Kerberos integration.| 
+| _service-name_| **service**| An entry from [_/etc/services_](http://en.wikipedia.org/w/index.php?title=Inetd&oldid=588510997#Setup "inetd - From Wikipedia the free encyclopedia")| Maps network services (_not_ the same as above) to standard port numbers and protocols (e.g. `ftp.service IN TXT "25/tcp"`)| 
+| _printer-name_| **pcap**| An entry from _[/etc/printcap](http://manpages.ubuntu.com/manpages/lucid/en/man5/printcap.5.html)_| Printer description and configuration. Can be used with LPRng| 
+|| **prclusterlist**| ?| returns a list of print clusters – from the man page| 
+| _print-cluster_| **prcluster**| ?| returns a list of printers in the cluster specified – from the man page|
+
+Also notice the `CNAME` entries defined for the uid and gid types. These are effectively aliases between the uid and passwd and the gid and `group` types – the `CNAME` will return the same data as the corresponding `TXT` it references. This just allows Hesiod to access the information in different ways – it’s good that you’re guaranteed exactly the same information otherwise things might get a bit freaky. Your system might act inconsistently if, for example, looking up the `staff` group gives a gid of `100` but looking up that same gid of `100` gives a completely different group altogether. It’s a good idea to alias these entries as often as you can to stop yourself making mistakes.
+
+And that’s it. With your names and types set up correctly you’re now ready to start serving Hesiod configuration data! Don’t forget that you may need to restart your DNS server when adding a zone.
+
+## Installing Hesiod
+
+Now that we’ve got our zone file configured, let’s see how to go about installing and configuring Hesiod. Exact package names may vary by distribution but there a search for ‘libhesiod’ should turn up the correct result. Following steps are for Debian and variants.
+
+Install the binary by typing:
+
+```
+$ sudo apt-get install libhesiod0
+```
+
+and then, in your favourite text editor, open up /etc/hesiod.conf (which may not exist), and fill in:
+
+```
+lhs=ns
+rhs=_your_domain.com_ classes=IN,HS
+```
+
+where the LHS is the Hesiod-specific zone you picked earlier and the RHS is the higher-level domain that it’s attached to. If your zone file was for a zone called ns.example.com, your LHS would be ns and your RHS would be example.com. The classes specify what kind of DNS entries the Hesiod client will look for – with DNS classes rarely used anymore it’s best just to leave this at the default.
+
+Your Hesiod library should have come with the hesinfo binary which you can use to test your new installation. On some distributions it may need to be installed manually. It has the following command line signature:
+
+```
+$ hesinfo _name_ _type_
+```
+
+So to look up a user called simon, one would type and expect to see:
+
+```
+$ hesinfo simon passwd
+simon:*:1000:1000:Simon Worthington:/home/simon:/bin/dash
+```
+
+If it’s not working here then it definitely won’t be working anywhere else either. Don’t forget that zones can take time to propagate after you make changes to them – if this step fails then consider using something like nslookup to see if your DNS zone is visible.
+
+Next, tell your system to use Hesiod for configuration. For user and group information this is done by the Name Service Switch facility, configured in /etc/nsswitch.conf. You should see lines for `passwd` and ‘group’ – you’ll want to include ‘hesiod’ somewhere on those lines.
+
+```
+passwd: hesiod files
+group: hesiod files
+shadow: files
+```
+
+Note that the order in which items are listed here is the order in which they will be checked for data – if you want local information to override the DNS you could specify it first. Or you could even remove ‘files’ (or ‘compat’) from the line altogether to completely switch off local user accounts, but this probably isn’t a good idea because if your DNS server is unavailable (due to network issues, say) then you won’t be able to log in. To test that your new configuration is working, make the system do a user lookup and check the same result is returned from hesinfo. You may need to restart an NSS service depending on your system for the changes to take effect.
+
+```
+$ id simon
+simon:*:1000:1000:Simon Worthington:/home/simon:/bin/dash
+```
+
+And that’s all you need to do on the client side to configure Hesiod for passwd and group entries!
+
+## Passwords and security
+
+There are a few important things to say about privacy and security with Hesiod. Firstly, for privacy reasons it’s important to limit the scope of your zonefile to an appropriate audience. Anyone who can see the zone can also see all the user entries. If your zone is public-facing, that’s the whole Internet, or if it’s an institution like a university, that’s all the lecturers and students. At the very least, this gives any potential attacker a list of usernames to attempt to guess the password to, which is one important line of defence. Therefore, it’s important to restrict access to the zone to machines or networks you trust using the configuration options on your DNS server. Ideally, configure the server to run on or only serve the zone to a VPN so that unauthorised individuals can’t get access.
+
+Secondly, you’ll notice in the above examples of passwd entries that the password field (the second one) just contains an ‘x’. This tells Unix that the password should be looked for in the _/etc/shadow_ file (or somewhere else, as decided by the _shadow_ entry in _/etc/nsswitch.conf_). However, Hesiod provides no ability to serve this information_,_ so where are we meant to get it from?
+
+One solution is to replace the ‘x’ with your actual password hashes. This’ll allow the kernel to check your password straight from DNS. However, this has the disadvantage of allowing _everyone_ that can see the DNS to see your hashes. It’s certainly possible to guess the password from the hash just by trying lots of different combinations (and it’ll be over in seconds if you pick an [obvious password](http://stricture-group.com/files/adobe-top100.txt)), so this might not be the best idea. If you’re willing to trust everyone who has access though, maybe on a home or _very_ small office network with water-tight security, then it certainly is the easiest way. This is, unfortunately, one of the limits of using Hesiod without any other components.
+
+There is, however, an alternative if this doesn’t appeal to you, and it comes in the form of another Project Athena system which was designed for this purpose. It’s name is [Kerberos](http://en.wikipedia.org/wiki/Kerberos_%28protocol%29), the gate-keeper, and whilst it’s a bit more effort to get going it’s an excellent companion to Hesiod. The configuration goes beyond the scope of this article but there should be plenty of resources out there that can be found using all good search engines.
+
+_Thanks to [Andy Bennett](http://www.ashurst.eu.org/) for his helpful notes and examples!_
