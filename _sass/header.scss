@@ -1,9 +1,15 @@
 #header-text {
-  span {
+  > span {
     display: block;
 
     &:first-child {
       margin-bottom: 1.3em;
     }
+
   }
+  
+  a .oi::before {
+    display: inline;
+    vertical-align: top;
+  }  
 } 
