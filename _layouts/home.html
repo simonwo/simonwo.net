@@ -11,13 +11,15 @@ columns: 4
   {% for this_column in (0..layout.columns) limit:layout.columns %}
   <div class="column">
     {% for post in site.posts %}
-      {% assign post_column = forloop.index0 | modulo: 4 %}
+      {% assign post_column = forloop.index0 | modulo: layout.columns %}
       {% if post_column == this_column %}
         <section class="post {{ post.category }} listing">
-          {% if post.thumbnail %}
-            <img src="{{ post.thumbnail | prepend: '/content/' | relative_url }}">
-          {% endif %}
-          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <a href="{{ post.url | relative_url }}">
+            {% if post.thumbnail %}
+              <img src="{{ post.thumbnail | prepend: '/content/' | relative_url }}">
+            {% endif %}
+            {{ post.title }}
+          </a>
           <span>{{ post.excerpt }}</span>
         </section>
       {% endif %}
