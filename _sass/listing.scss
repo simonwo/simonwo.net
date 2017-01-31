@@ -43,5 +43,14 @@ nav {
     @include no-zero-margin(2);
     @include no-zero-margin(3);
     @include no-zero-margin(4);
+
+    @media (max-width: #{$COLUMN_TOTAL_WIDTH * 2}) {
+      width: 100%;
+      padding-left: 0;
+
+      > * {
+        margin-left: 0;
+      }
+    }
   }
 }
