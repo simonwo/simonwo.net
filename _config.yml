@@ -17,7 +17,7 @@ title: "simonwo.net"
 email: simon@simonwo.net
 description: "The personal website of Simon Worthington, sometimes called Wo! Net."
 baseurl: "" 
-url: "http://www.simonwo.net" 
+url: "http://simonwo.net" 
 permalink: /:categories/:title/
 
 # Build settings
