@@ -20,8 +20,8 @@
 {% if page.date %}
   <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time">
 {% endif %}
-{% if page.image %}
-  <meta content="/img/srcset/{{ page.image }}" property="og:image">
+{% if page.thumbnail %}
+  <meta content="{{ page.thumbnail | prepend: '/content/' | absolute_url }}" property="og:image">
 {% endif %}
 {% if page.categories %}
   {% for category in page.categories limit:1 %}
