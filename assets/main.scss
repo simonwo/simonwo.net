@@ -48,6 +48,7 @@ section.post {
   
   * {
     padding: 0;
+    max-width: 100%;
   }
   
   h1 {
@@ -72,6 +73,7 @@ section.post {
 
   li {
     margin-left: 20px;
+    margin-bottom: 1em;
   }
 
   pre {
@@ -174,7 +176,7 @@ $GREEN  : #00A60D;
   font-family: 'AlteHaasGroteskBold',Arial,sans-serif;
   font-weight: normal;
 }
-p {
+p, li {
   line-height: 1.6em;
 }
 footer {
