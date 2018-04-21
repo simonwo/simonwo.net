@@ -6,6 +6,8 @@
 @import "clearfix";
 @import "search";
 
+$CODE_BACKGROUND_COLOUR: #F0F0F0;
+
 html {
   background-color: #000000;
   background-image: url("./grid.png");
@@ -45,12 +47,12 @@ section.post {
   border-left-style: solid;
   border-left-width: 10px;
   padding: 10px;
-  
+
   * {
     padding: 0;
     max-width: 100%;
   }
-  
+
   h1 {
     margin: 0 0 5px;
   }
@@ -77,9 +79,14 @@ section.post {
   }
 
   pre {
-    background: none repeat scroll 0 0 #D3D3D3;
+    background: none repeat scroll 0 0 $CODE_BACKGROUND_COLOUR;
     overflow: auto;
     padding: 15px !important;
+  }
+
+  code {
+    background-color: $CODE_BACKGROUND_COLOUR;
+    padding: 0 0.5ch;
   }
 
   @import "embed";
@@ -108,7 +115,7 @@ header {
     width: 25%;
     max-width: 100px;
     margin-bottom: -3px;
-  
+
     img {
       border-radius: 5px;
       width: 100%;
@@ -156,13 +163,13 @@ $GREEN  : #00A60D;
   text-decoration: none;
   text-transform: uppercase;
   width: 180px;
-  
+
   span {
     display: block;
     font-size: 10px;
     text-transform: none;
-  } 
-  
+  }
+
   &:hover {
     color: #FFFFFF;
   }
