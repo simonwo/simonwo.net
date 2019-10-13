@@ -16,22 +16,34 @@
 title: "simonwo.net"
 email: simon@simonwo.net
 description: "The personal website of Simon Worthington, sometimes called Wo! Net."
-baseurl: "" 
-url: "http://simonwo.net" 
+baseurl: "/"
+url: "https://simonwo.net"
+author: Simon Worthington
+twitter:
+  username: 51M0NW
+  card: summary
 permalink: /:categories/:title/
+lang: en_GB
+
+data:
+  authors:
+    Simon Worthington:
+      twitter: 51M0NW
 
 # Build settings
 markdown: kramdown
-gems:
+plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 exclude:
   - Gemfile
   - Gemfile.lock
 
 defaults:
-- 
+-
   scope:
     path: ""
     type: posts
   values:
     layout: post
+    author: Simon Worthington

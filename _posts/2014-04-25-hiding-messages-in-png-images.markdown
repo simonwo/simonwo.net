@@ -1,7 +1,7 @@
 ---
 title: Hiding messages in colour-indexed images
 category: technical
-thumbnail: palette-after-small.png
+image: /content/palette-after-small.png
 excerpt: Manipulation of the PNG palette can be used to hide data or messages in plain sight.
 ---
 ![Tux](/content/Tux2.png)

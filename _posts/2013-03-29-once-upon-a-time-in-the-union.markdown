@@ -2,7 +2,7 @@
 title: Once Upon A Time In The Union
 category: stuff
 excerpt: A short film set at Imperial College written, shot and edited in a week.
-thumbnail: once-upon-a-time.jpeg
+image: /content/once-upon-a-time.jpeg
 meta:
   year: 2010
   equipment: Sony HVR-Z1, Adobe Premiere Pro

@@ -2,7 +2,7 @@
 title: Theory and simulation of ion Coulomb crystal formation in a Penning trap
 category: science
 excerpt: Appl. Phys. B, 2013
-thumbnail: ion-coulomb-crystals.png
+image: /content/ion-coulomb-crystals.png
 meta:
   citation: Martin Asprusten, Simon Worthington, Richard C. Thompson. Theory and simulation of ion Coulomb crystal formation in a Penning trap. Appl. Phys. B, 2013
   doi: 10.1007/s00340-013-5708-7

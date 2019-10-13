@@ -15,8 +15,8 @@ columns: 4
       {% if post_column == this_column %}
         <section class="post {{ post.category }} listing">
           <a href="{{ post.url | relative_url }}">
-            {% if post.thumbnail %}
-              <img src="{{ post.thumbnail | prepend: '/content/' | relative_url }}">
+            {% if post.image %}
+              <img src="{{ post.image | relative_url }}">
             {% endif %}
             {{ post.title }}
           </a>

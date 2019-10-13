@@ -2,7 +2,7 @@
 title: memor-eyes 2
 category: stuff
 excerpt: High-octane puzzle action that will take your visual cortex, break it's back, and make it humble.
-thumbnail: memor-eyes2.png
+image: /content/memor-eyes2.png
 meta:
   year: 2008
   language: Adobe Flash + Actionscript 2

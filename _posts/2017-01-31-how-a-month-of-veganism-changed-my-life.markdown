@@ -2,7 +2,7 @@
 title: What I learned from a month of veganism
 category: stuff
 excerpt: Getting by with no meat and cheese was easier than I thought.
-thumbnail: pizza-bham-uni-small.jpg
+image: /content/pizza-bham-uni-small.jpg
 ---
 
 ![A lone slice of pizza in a greasy box.]({{ site.baseurl }}/content/pizza-bham-uni.jpg)
