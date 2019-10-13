@@ -137,17 +137,20 @@ $BLUE   : #265CFF;
 $RED    : #DC322F;
 $YELLOW : #FFBF00;
 $GREEN  : #00A60D;
+$PURPLE : #9D00FF;
 
 /* To-do: make this a parameterised include */
 .code { border-left-color: $BLUE; }
 .technical { border-left-color: $RED; }
 .stuff { border-left-color: $YELLOW; }
 .science { border-left-color: $GREEN; }
+.weeknotes { border-left-color: $PURPLE; }
 
 .code a.download-btn { border-color: $BLUE; }
 .technical a.download-btn { border-color: $RED; }
 .stuff a.download-btn { border-color: $YELLOW; }
 .science a.download-btn { border-color: $GREEN; }
+.weeknotes a.download-btn { border-color: $PURPLE; }
 
 .download-btn {
   border-style: solid;
