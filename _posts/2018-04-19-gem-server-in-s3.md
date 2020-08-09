@@ -19,7 +19,7 @@ We don't need to set up anything more than a normal S3 bucket to serve our gems 
 
 ## Generating the Gem index
 
-We need three indicies to be available in the root directory of our bucket: one for all gem versions, one for just the latest gem versions and a separate one for pre-release gems. We also need all the gems to be available in `./gems` and quickly-parsable versions of the gemspecs to be in `./quick` to allow resolution of dependencies. These will have to be regenerated whenever we push a new gem version.
+We need three indexes to be available in the root directory of our bucket: one for all gem versions, one for just the latest gem versions and a separate one for pre-release gems. We also need all the gems to be available in `./gems` and quickly-parsable versions of the gemspecs to be in `./quick` to allow resolution of dependencies. These will have to be regenerated whenever we push a new gem version.
 
 Thankfully, it's easy to create these files by calling `gem generate_index`. This will look at all the gems in the `./gems` folder and write out index files for them. However, index generation needs to be run over _all_ the gem versions that are in the gemserver. This means we need to have access to all the previous gem versions too. So we first download all the previous gems from S3 and then run `gem generate_index` over the entire contents.
 
