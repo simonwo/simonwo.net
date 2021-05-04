@@ -23,7 +23,7 @@ twitter:
   username: 51M0NW
   card: summary
 permalink: /:categories/:title/
-lang: en_GB
+lang: en
 
 data:
   authors:

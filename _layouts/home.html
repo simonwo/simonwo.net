@@ -3,8 +3,7 @@ layout: default
 columns: 4
 ---
 <header id="search">
-  <span class="oi" data-glyph="magnifying-glass"></span>
-  <input type="text">
+  <input type="search" aria-label="Search">
 </header>
 
 <nav>
@@ -16,7 +15,8 @@ columns: 4
         <section class="post {{ post.category }} listing">
           <a href="{{ post.url | relative_url }}">
             {% if post.image %}
-              <img src="{{ post.image | relative_url }}">
+              {% assign alt = post.image | split: '/' | last | split: '.' | first | replace: '-', ' ' %}
+              <img src="{{ post.image | relative_url }}" alt="{{ alt }}">
             {% endif %}
             {{ post.title }}
           </a>
@@ -27,3 +27,35 @@ columns: 4
   </div>
   {% endfor %}
 </nav>
+
+<script language="javascript" type="text/javascript">
+window.addEventListener("load", function() {
+  let searchChildren = function(container, str) {
+    return container
+      .filter(child => child.classList.toggle("result", (child.innerText.toLowerCase().indexOf(str.toLowerCase()) >= 0)));
+  }
+
+  let container = document.getElementById("search")
+  let inputBox = container.querySelector("input");
+
+  let doSearch = function() {
+    let query = inputBox.value;
+    let all = Array.from(document.querySelectorAll('section.post'));
+
+    if (query == "") {
+      delete container.dataset["results"];
+      delete container.dataset["query"];
+    } else {
+      var found = searchChildren(all, query);
+      container.dataset["results"] = found.length;
+      container.dataset["query"] = query;
+    }
+  }
+
+  var params = new URLSearchParams(document.location.search.substring(1));
+  var query = params.get("query");
+  inputBox.value = query;
+  inputBox.addEventListener("keyup", doSearch);
+  doSearch();
+});
+</script>

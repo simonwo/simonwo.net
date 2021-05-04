@@ -1,36 +1,40 @@
 header#search {
-  * {
-    float: left;
+  display: flex;
+  column-gap: 1ch;
+
+  &, * {
     font-size: 14pt;
+    font-family: inherit;
   }
 
   input {
-    font-family: sans-serif;
+    width: 100%;
     padding-bottom: 0;
-    margin-left: 10px;
-    width: 90%;
     border: 0;
   }
 
-  .oi {
-    line-height: 0;
+  &::before {
+    content: "🔎\FE0E";
+    margin-left: 0.5ch;
   }
-  
-  &.zeroresults {
+
+  &[data-results="0"] {
     background-color: #CC2F2F;
 
-    * {
+    &::before, * {
       background-color: inherit;
       color: white;
     }
   }
 }
 
-.included {
-  box-shadow: 0 0 10px 0 white;
-}
+#search[data-results] ~ nav .column section {
+  &.result {
+    box-shadow: 0 0 10px 0 white;
+  }
 
-.excluded {
-  box-shadow: none;
-  opacity: 0.5;
+  &:not(.result) {
+    box-shadow: none;
+    opacity: 0.5;
+  }
 }

@@ -1,6 +1,6 @@
 ---
 ---
-@import "external-links";
+@import "links";
 @import "listing";
 @import "header";
 @import "clearfix";
@@ -37,6 +37,8 @@ section, header {
 main {
   @include tag-external-links();
 }
+
+@include tag-mailto-links();
 
 section > *, header {
   background-color: #FFFFFF;

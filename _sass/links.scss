@@ -1,0 +1,11 @@
+@mixin tag-external-links() {
+  a[href^="http"]::after {
+    content: "\A0↗\FE0E";
+  }
+}
+
+@mixin tag-mailto-links() {
+  a[href^="mailto"]::before {
+    content: "✉\FE0E\A0"
+  }
+}
