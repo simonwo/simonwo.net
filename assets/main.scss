@@ -11,8 +11,11 @@ $CODE_BACKGROUND_COLOUR: #F0F0F0;
 
 html {
   background-color: #000000;
-  background-image: url("./grid.png");
-  background-position: 45px 8px;
+  background-image:
+      linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px);
+  background-size: 10px 10px, 10px 10px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
   background-repeat: repeat;
 }
 
