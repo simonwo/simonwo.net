@@ -1,0 +1,16 @@
+---
+---
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//hacksw/handcal//NONSGML v1.0//EN
+{% for destination in site.data.nomads -%}
+BEGIN:VEVENT
+UID:{{ destination.start | date: "%s" }}@{{ site.email | split: "@" | last }}
+DTSTAMP:{{ destination.start | date: "%Y%m%dT%l%M%SZ" }}
+ORGANIZER;CN={{ site.author }}:MAILTO:{{ site.email }}
+DTSTART:{{ destination.start | date: "%Y%m%d" }}
+DTEND:{{ destination.end | date: "%Y%m%d" }}
+SUMMARY:{{ destination.location}}
+END:VEVENT
+{% endfor -%}
+END:VCALENDAR
