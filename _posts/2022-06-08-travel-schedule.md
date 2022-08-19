@@ -14,7 +14,13 @@ Blanks mean we’re homeless! You can get an auto-updating iCalender version [he
   </thead>
   <tbody>
     {% for destination in site.data.nomads %}
-    <tr>
+    {% assign now = "now" | date: "%s" %}
+    {% assign end = destination.end | date: "%s" %}
+    <tr 
+    {% if now > end %}
+      class="past"
+    {% endif %} 
+    >
       <td>{{ destination.start | date: "%A %e %B" }}</td>
       <td>{{ destination.end | date: "%A %e %B" }}</td>
       <td>{{ destination.location }}</td>
