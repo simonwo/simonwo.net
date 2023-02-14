@@ -44,6 +44,12 @@
   end: 2023-03-11
   location: Skiing
 - start: 2023-03-12
-  end: 2023-04-30
+  end: 2023-05-02
   location: Rotton Row
+- start: 2023-03-22
+  end: 2023-03-26
+  location: Barcelona
+- start: 2023-05-03
+  end: 2023-05-13
+  location: Redditch
   
