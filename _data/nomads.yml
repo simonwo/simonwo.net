@@ -62,11 +62,11 @@
   end: 2023-06-03
   location: Croydon
 - start: 2023-06-04
-  end: 2023-06-15
+  end: 2023-06-12
+  location: Rotton Row
+- start: 2023-06-13
+  end: 2023-06-25
   location: Redditch
-- start: 2023-06-16
-  end: 2023-06-26
-  location: London, Chiswick
 - start: 2023-06-26
   end: 2023-06-12
   location: Bristol
