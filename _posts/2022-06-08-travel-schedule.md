@@ -10,7 +10,7 @@ Blanks mean we’re homeless! You can get an auto-updating iCalender version [he
 
 <table>
   <thead>
-    <tr><th>Start date</th><th>End date</th><th>Location</th><th>Days</th></tr>
+    <tr><th>#</th><th>Start date</th><th>End date</th><th>Location</th><th>Days</th></tr>
   </thead>
   <tbody>
     {% for destination in site.data.nomads %}
@@ -23,6 +23,7 @@ Blanks mean we’re homeless! You can get an auto-updating iCalender version [he
       class="past"
     {% endif %} 
     >
+      <td>{{ forloop.index }}</td>
       <td>{{ destination.start | date: "%A %e %B" }}</td>
       <td>{{ destination.end | date: "%A %e %B" }}</td>
       <td>{{ destination.location }}</td>
