@@ -70,6 +70,12 @@
 - start: 2023-06-27
   end: 2023-07-12
   location: Bristol
+- start: 2023-07-13
+  end: 2023-07-14
+  location: Redditch
+- start: 2023-07-15
+  end: 2023-07-16
+  location: London, Mile End
 - start: 2023-07-17
   end: 2023-07-30
   location: Iceland
@@ -77,5 +83,12 @@
   end: 2023-09-01
   location: London, Dulwich
 - start: 2023-09-02
-  end: 2023-09-09
-  location: Redditch 
+  end: 2023-09-11
+  location: Redditch
+- start: 2023-09-12
+  end: 2023-10-12
+  location: St Leonard's
+- start: 2023-10-13
+  end: 2023-10-15
+  location: Rotton Row
+
