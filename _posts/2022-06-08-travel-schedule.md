@@ -12,8 +12,8 @@ Blanks mean we’re homeless! You can get an auto-updating iCalender version [he
 <label for="show_past">Show past locations</label>
 
 <style type="text/css">
-tr.past { display: none }
-#show_past:checked tr.past { display: auto }
+table tr.past { display: none }
+#show_past:checked ~ table tr.past { display: auto }
 </style>
 
 <table>
