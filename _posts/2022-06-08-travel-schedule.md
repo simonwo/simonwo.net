@@ -8,6 +8,14 @@ Celia and I have become digital nomads. This is where we’ll be.
 
 Blanks mean we’re homeless! You can get an auto-updating iCalender version [here](/nomads.ical).
 
+<input id="show_past" type="checkbox">
+<label for="show_past">Show past locations</label>
+
+<style type="text/css">
+tr.past { display: none }
+#show_past:checked tr.past { display: auto }
+</style>
+
 <table>
   <thead>
     <tr><th>#</th><th>Start date</th><th>End date</th><th>Location</th><th>Days</th></tr>
