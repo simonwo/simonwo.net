@@ -8,13 +8,14 @@ Celia and I have become digital nomads. This is where we’ll be.
 
 Blanks mean we’re homeless! You can get an auto-updating iCalender version [here](/nomads.ical).
 
-<input id="show_past" type="checkbox">
-<label for="show_past">Show past locations</label>
-
 <style type="text/css">
 table tr.past { display: none }
-#show_past:checked ~ table tr.past { display: auto }
+#show_past:checked ~ table tr.past { display: table-row }
 </style>
+
+<div>
+<input id="show_past" type="checkbox">
+<label for="show_past">Show past locations</label>
 
 <table>
   <thead>
@@ -26,11 +27,7 @@ table tr.past { display: none }
     {% assign start = destination.start | date: "%s" %}
     {% assign end = destination.end | date: "%s" %}
     {% assign days = end | minus: start | divided_by: 86400 %}
-    <tr 
-    {% if now > end %}
-      class="past"
-    {% endif %} 
-    >
+    <tr{% if now > end %} class="past"{% endif %}>
       <td>{{ forloop.index }}</td>
       <td>{{ destination.start | date: "%A %e %B" }}</td>
       <td>{{ destination.end | date: "%A %e %B" }}</td>
@@ -40,3 +37,4 @@ table tr.past { display: none }
     {% endfor %}
   </tbody>
 </table>
+</div>
