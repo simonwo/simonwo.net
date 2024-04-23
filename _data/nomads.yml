@@ -118,9 +118,21 @@
 - start: 2024-01-26
   end: 2024-04-14
   location: Murrumbateman, NSW
+- start: 2024-04-20
+  end: 2024-05-10
+  location: Redditch
+- start: 2024-05-11
+  end: 2024-05-19
+  location: Hampton Wick
+- start: 2024-05-20
+  end: 2024-05-23
+  location: Redditch
 - start: 2024-05-24
   end: 2024-06-02
   location: North America
 - start: 2024-06-03
-  end: 2024-07-27
+  end: 2024-07-17
   location: St Leonard's
+- start: 2024-07-18
+  end: 2024-08-02
+  location: Cranbrook
