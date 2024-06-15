@@ -3,6 +3,7 @@ title: Upcycling a vintage TV alarm clock with a Raspberry Pi
 category: technical
 image: "/content/saisho-dispalying-this-website.jpg"
 excerpt: A love story involving a retro Saisho unit.
+featured: yes
 ---
 
 Once upon a time I went to [MeatLIQUOR N1](http://meatliquor.com/n1/), one of my favourite eateries (they do mean veggie stuff FYI), and marvelled at their magnificent wall of screens playing an on-brand video montage on loop. And then I noticed that there had been a small addition to the wall – a Saisho alarm clock with a tiny TV screen. It was love at first sight and in that moment I realised that one of these things next to my bed waking me up with a completely customised display would be tremendous. So I set out to create my own.

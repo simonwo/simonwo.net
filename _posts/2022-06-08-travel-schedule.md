@@ -2,6 +2,8 @@
 title: Digital nomad travel schedule
 category: stuff
 excerpt: Celia and I have become digital nomads. This is where we’ll be.
+featured: yes
+big: yes
 ---
 
 Celia and I have become digital nomads. This is where we’ll be.

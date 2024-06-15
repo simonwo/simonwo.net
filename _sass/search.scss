@@ -28,7 +28,7 @@ header#search {
   }
 }
 
-#search[data-results] ~ nav .column section {
+#search[data-results] ~ nav section {
   &.result {
     box-shadow: 0 0 10px 0 white;
   }

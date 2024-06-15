@@ -2,6 +2,7 @@
 title: The Fibonacci sequence in logarithmic time
 category: technical
 excerpt: A general technique for solving linear recurrence sequences, even in modular arithmetic.
+featured: yes
 ---
 {% include mathjax.html %}
 

@@ -1,30 +1,22 @@
 ---
 layout: default
-columns: 4
 ---
 <header id="search">
   <input type="search" aria-label="Search">
 </header>
 
 <nav>
-  {% for this_column in (0..layout.columns) limit:layout.columns %}
-  <div class="column">
-    {% for post in site.posts %}
-      {% assign post_column = forloop.index0 | modulo: layout.columns %}
-      {% if post_column == this_column %}
-        <section class="post {{ post.category }} listing">
-          <a href="{{ post.url | relative_url }}">
-            {% if post.image %}
-              {% assign alt = post.image | split: '/' | last | split: '.' | first | replace: '-', ' ' %}
-              <img src="{{ post.image | relative_url }}" alt="{{ alt }}">
-            {% endif %}
-            {{ post.title }}
-          </a>
-          <span>{{ post.excerpt }}</span>
-        </section>
-      {% endif %}
-    {% endfor %}
-  </div>
+  {% for post in site.posts %}
+    <section class="post {{ post.category }}{% if post.featured %} featured{% endif %}{% if post.big %} big{% endif %}">
+      <a href="{{ post.url | relative_url }}">
+        {% if post.image %}
+          {% assign alt = post.image | split: '/' | last | split: '.' | first | replace: '-', ' ' %}
+          <img src="{{ post.image | relative_url }}" alt="{{ alt }}">
+        {% endif %}
+        {{ post.title }}
+      </a>
+      <span>{{ post.excerpt }}</span>
+    </section>
   {% endfor %}
 </nav>
 

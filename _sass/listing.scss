@@ -1,56 +1,55 @@
-$COLUMN_WIDTH: 160px;
-$COLUMN_PADDING: 10px;
-$COLUMN_MARGIN: 10px;
-$COLUMN_TOTAL_WIDTH: $COLUMN_WIDTH + $COLUMN_PADDING + $COLUMN_MARGIN;
-
 nav {
-  .column {
-    float: left;
-    margin-right: $COLUMN_MARGIN;
-    padding-left: $COLUMN_PADDING;
-    position: relative;
-    width: $COLUMN_WIDTH;
-   
-    > * {
-      margin-left: -$COLUMN_MARGIN;
-      margin-bottom: $COLUMN_MARGIN;
+  display: grid;
+  column-gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+
+  @media screen and (max-width: 500px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  section {
+    &.featured {
+      @media screen and (min-width: 500px) {
+        grid-row: 1;
+      }
+
+      @media screen and (max-width: 500px) {
+        grid-column: 1 / 5;
+      }
     }
 
-    section {
-      a {
-        font-weight: bold;
-        display: block;
-      }
+    &:not(.featured) {
+      grid-column: 1 / 5;
 
       img {
-        max-width: 100%;
-        min-height: 105px;
+        max-height: 3em !important;
+        min-height: unset;
+        float: left;
+        margin-right: 10px;
       }
     }
-  
-    &:last-of-type {
-      margin-right: 0;
-    }
-  
-    @mixin no-zero-margin($column) {
-      @media (max-width: #{$COLUMN_TOTAL_WIDTH * $column}) {
-        &:nth-of-type(#{$column}) {
-          margin-right: 0;
-        }
+
+    &.big a {
+      font-size: 165%;
+
+      @media screen and (min-width: 500px) {
+        margin-bottom: 10px;
       }
     }
-  
-    @include no-zero-margin(1);
-    @include no-zero-margin(2);
-    @include no-zero-margin(3);
-    @include no-zero-margin(4);
 
-    @media (max-width: #{$COLUMN_TOTAL_WIDTH * 2}) {
-      width: 100%;
-      padding-left: 0;
+    a {
+      font-weight: bold;
+      display: block;
+    }
 
-      > * {
-        margin-left: 0;
+    img {
+      max-width: 100%;
+      min-height: 105px;
+
+      @media screen and (max-width: 500px) {
+        max-width: 120px !important;
+        float: left;
+        margin-right: 10px;
       }
     }
   }
