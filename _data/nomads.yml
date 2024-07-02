@@ -136,12 +136,18 @@
 - start: 2024-07-18
   end: 2024-08-02
   location: Cranbrook
-- start: 2024-08-03
+- start: 2024-08-02
   end: 2024-08-06
   location: Redditch
-- start: 2024-08-07
+- start: 2024-08-06
   end: 2024-08-26
   location: Hastings
+- start: 2024-08-26
+  end: 2024-09-06
+  location: London
+- start: 2024-09-06
+  end: 2024-09-17
+  location: Redditch
 - start: 2024-09-17
   end: 2024-09-30
   location: Orkney/Shetland
