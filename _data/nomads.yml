@@ -151,9 +151,27 @@
 - start: 2024-09-17
   end: 2024-09-30
   location: Orkney/Shetland
-- start: 2024-10-04
+- start: 2024-10-01
+  end: 2024-10-02
+  location: Redditch
+- start: 2024-10-02
+  end: 2024-10-06
+  location: London 
+- start: 2024-10-06
   end: 2024-10-13
-  location: Portugal
+  location: Madeira
+- start: 2024-10-13
+  end: 2024-10-19
+  location: Redditch
+- start: 2024-10-19
+  end: 2024-10-24
+  location: Croydon
+- start: 2024-10-24
+  end: 2024-11-03
+  location: Redditch
 - start: 2024-11-03
   end: 2024-12-05
   location: Greece
+- start: 2024-12-05
+  end: 2025-01-13
+  location: Redditch 
