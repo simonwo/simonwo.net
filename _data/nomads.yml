@@ -173,5 +173,18 @@
   end: 2024-12-05
   location: Greece
 - start: 2024-12-05
-  end: 2025-01-13
-  location: Redditch 
+  end: 2024-12-06
+  location: Redditch
+- start: 2024-12-06
+  end: 2024-12-11
+  location: Rotton Row
+- start: 2024-12-11
+  end: 2024-12-27
+  location: Redditch
+- start: 2024-12-27
+  end: 2025-01-08
+  location: Rotton Row    
+- start: 2025-01-08
+  end: 2025-01-15
+  location: Redditch
+ 
