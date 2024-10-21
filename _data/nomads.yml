@@ -156,7 +156,7 @@
   location: Redditch
 - start: 2024-10-02
   end: 2024-10-06
-  location: London 
+  location: London
 - start: 2024-10-06
   end: 2024-10-12
   location: Madeira
@@ -169,7 +169,7 @@
 - start: 2024-10-24
   end: 2024-10-27
   location: London
-- start: 2024-10-27 
+- start: 2024-10-27
   end: 2024-11-03
   location: Redditch
 - start: 2024-11-03
@@ -186,8 +186,10 @@
   location: Redditch
 - start: 2024-12-27
   end: 2025-01-08
-  location: Rotton Row    
+  location: Rotton Row
 - start: 2025-01-08
   end: 2025-01-15
   location: Redditch
- 
+- start: 2025-07-04
+  end: 2025-08-04
+  location: Copenhagen
