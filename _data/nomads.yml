@@ -188,8 +188,11 @@
   end: 2025-01-08
   location: Rotton Row
 - start: 2025-01-08
-  end: 2025-01-15
+  end: 2025-01-18
   location: Redditch
+- start: 2025-01-18
+  end: 2025-05-27
+  location: Australia
 - start: 2025-07-04
   end: 2025-08-04
   location: Copenhagen
