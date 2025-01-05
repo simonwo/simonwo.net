@@ -219,3 +219,18 @@ table {
   border-spacing: 1ch 0px;
   border-collapse: separate;
 }
+
+dt {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5em 2ch;
+}
+
+dd {
+  margin: 0;
+}

@@ -8,5 +8,24 @@ layout: default
     <time>{{ page.date | date: "%B %e, %Y" }}</time>
 
     {{ page.content }}
+
+    {% if page.meta %}
+    <dl>
+      {%- if page.link -%}
+      <dt>Link</dt>
+      <dd><a href="{{ page.link }}">{{ page.link }}</a></dd>
+      {%- endif -%}
+      {%- for meta in page.meta -%}
+      <dt>{{ meta[0] }}</dt>
+      <dd>
+        {%- if meta[0] == "doi" -%}
+        <a href="https://doi.org/{{ meta[1] }}">{{ meta[1] }}</a>
+        {%- else -%}
+        {{ meta[1] }}
+        {%- endif -%}
+      </dd>
+      {%- endfor -%}
+    </dl>
+    {% endif %}
   </section>
 </main>
