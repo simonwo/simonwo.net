@@ -1,6 +1,9 @@
 @mixin tag-external-links() {
   a[href^="http"]::after {
     content: "\A0↗\FE0E";
+    font-size: 1.3em;
+    vertical-align: text-bottom;
+    margin-left: -2px;
   }
 }
 
