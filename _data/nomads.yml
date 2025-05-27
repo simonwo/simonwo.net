@@ -194,6 +194,9 @@
   end: 2025-05-27
   location: Australia
 - start: 2025-05-27
+  end: 2025-05-29
+  location: London
+- start: 2025-05-29 
   end: 2025-06-26
   location: Redditch
 - start: 2025-06-26
