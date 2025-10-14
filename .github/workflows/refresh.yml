@@ -1,19 +1,53 @@
 name: Refresh
 
 on:
+  push:
   schedule:
     - cron:  '0 3 * * *' # Runs every day at 3am
 
 jobs:
-  refresh:
+  build-static-pages:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger GitHub pages rebuild
-        run: |
-          curl --fail --request POST \
-            --url https://api.github.com/repos/${{ github.repository }}/pages/builds \
-            --header "Authorization: Bearer $USER_TOKEN"
-        env:
-          # You must create a personal token with repo access as GitHub does
-          # not yet support server-to-server page builds.
-          USER_TOKEN: ${{ secrets.USER_TOKEN }}
+      - name: Check out repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+          submodules: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/configure-pages@v5
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Build site
+        run: bundle exec jekyll build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3.0.1
+        with:
+          path: ./_site
+
+  deploy:
+    name: Deploy to Pages
+    needs: build-static-pages
+    if: ${{ github.ref == 'refs/heads/master' }}
+
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    environment:
+      name: Github Pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
