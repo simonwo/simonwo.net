@@ -218,14 +218,17 @@
   end: 2025-08-23
   location: Redditch
 - start: 2025-08-24
-  end: 2025-09-21
+  end: 2025-09-29
   location: Northumberland
-- start: 2025-09-27
-  end: 2025-09-28
-  location: Edinburgh
+- start: 2025-09-29
+  end: 2025-09-04
+  location: Redditch
 - start: 2025-10-04
   end: 2025-10-11
-  location: Llangollen Canal 
+  location: Llangollen Canal
 - start: 2025-10-12
   end: 2025-11-09
   location: Hastings
+- start: 2025-11-09
+  end: 2025-12-23
+  location: Redditch
