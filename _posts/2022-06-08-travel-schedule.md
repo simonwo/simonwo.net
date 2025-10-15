@@ -8,7 +8,7 @@ big: yes
 
 Celia and I have become digital nomads. This is where we’ll be.
 
-Blanks mean we’re homeless! You can get an auto-updating iCalender version [here](/nomads.ical).
+Blanks mean we’re homeless! You can subscribe to an auto-updating iCalender version [here](webcal:///nomads.ical).
 
 <style type="text/css">
 table tr.past { display: none }
