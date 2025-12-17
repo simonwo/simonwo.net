@@ -232,3 +232,21 @@
 - start: 2025-11-09
   end: 2025-12-23
   location: Redditch
+- start: 2025-12-23
+  end: 2026-01-03
+  location: Shereford
+- start: 2026-01-03
+  end: 2026-01-11
+  location: Redditch
+- start: 2026-01-11
+  end: 2026-01-18
+  location: Hull
+- start: 2026-01-18
+  end: 2026-02-01
+  location: Redditch
+- start: 2026-02-01
+  end: 2026-02-08
+  location: Plaxtol
+- start: 2026-02-08
+  end: 2026-02-20
+  location: Redditch
