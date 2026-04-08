@@ -251,5 +251,23 @@
   end: 2026-03-18
   location: Redditch
 - start: 2026-03-18
+  end: 2026-03-21
+  location: Murrumbateman, NSW
+- start: 2026-03-21
+  end: 2026-03-30
+  location: Port Lincoln, SA
+- start: 2026-03-30
+  end: 2026-04-05
+  location: Murrumbateman, NSW
+- start: 2026-04-05
+  end: 2026-04-12
+  location: Turner, ACT
+- start: 2026-04-12
+  end: 2026-04-17
+  location: Murrumbateman, NSW
+- start: 2026-04-17
+  end: 2026-04-19
+  location: Bungendore, NSW
+- start: 2026-04-19
   end: 2026-05-27
   location: Murrumbateman, NSW
