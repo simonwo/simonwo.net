@@ -271,7 +271,7 @@
 - start: 2026-04-19
   end: 2026-04-28
   location: Rosedale, NSW
-- start: 2026-04-28 
+- start: 2026-04-28
   end: 2026-05-27
   location: Murrumbateman, NSW
 - start: 2026-05-29
@@ -281,5 +281,14 @@
   end: 2026-09-13
   location: Stratford-Upon-Avon
 - start: 2026-09-13
-  end: 2026-09-21
+  end: 2026-09-24
   location: Redditch
+- start: 2026-09-24
+  end: 2026-09-28
+  location: Shereford
+- start: 2026-09-29
+  end: 2026-10-02
+  location: London, Mile End
+- start: 2026-10-02
+  end: 2026-10-19
+  location: Cotswolds, Winchcombe
