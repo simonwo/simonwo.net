@@ -144,19 +144,22 @@ $RED    : #DC322F;
 $YELLOW : #FFBF00;
 $GREEN  : #00A60D;
 $PURPLE : #9D00FF;
+$CYAN   : #00E5FF;
 
 /* To-do: make this a parameterised include */
 .code { border-left-color: $BLUE; }
 .technical { border-left-color: $RED; }
 .stuff { border-left-color: $YELLOW; }
-.science { border-left-color: $GREEN; }
+.science { border-left-color: $CYAN; }
 .weeknotes { border-left-color: $PURPLE; }
+.fiber { border-left-color: $GREEN; }
 
 .code a.download-btn { border-color: $BLUE; }
 .technical a.download-btn { border-color: $RED; }
 .stuff a.download-btn { border-color: $YELLOW; }
-.science a.download-btn { border-color: $GREEN; }
+.science a.download-btn { border-color: $CYAN; }
 .weeknotes a.download-btn { border-color: $PURPLE; }
+.fiber a.download-btn { border-color: $GREEN; }
 
 .download-btn {
   border-style: solid;
