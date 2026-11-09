@@ -1,0 +1,32 @@
+---
+---
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//hacksw/handcal//NONSGML v1.0//EN
+{% for activity in site.data.wedding -%}
+{%- if activity.pickup %}
+BEGIN:VEVENT
+{% capture pickup %}{{activity.day}}T{{activity.pickup}}{% endcapture -%}
+UID:{{ pickup | date: "%s" }}@wedding.{{ site.email | split: "@" | last }}
+DTSTAMP;TZID=Asia/Karachi:{{ pickup | date: "%Y%m%dT%l%M%S" }}
+ORGANIZER;CN={{ site.author }}:MAILTO:{{ site.email }}
+DTSTART;TZID=Asia/Karachi:{{ pickup | date: "%Y%m%dT%l%M%S" }}
+SUMMARY:Pickup for {{ activity.title }}
+LOCATION:Raya Hotel
+DESCRIPTION:All guests to wait outside the main courtyard (where the fountain is) facing the car park. A mini coach will pick you up
+END:VEVENT
+{%- endif %}
+BEGIN:VEVENT
+{% capture start %}{{activity.day}}T{{activity.start}}{% endcapture -%}
+{%- capture end %}{{activity.day}}T{{activity.end}}{% endcapture -%}
+UID:{{ start | date: "%s" }}@wedding.{{ site.email | split: "@" | last }}
+DTSTAMP:{{ start | date: "%Y%m%dT%l%M%S" }}
+ORGANIZER;CN={{ site.author }}:MAILTO:{{ site.email }}
+DTSTART;TZID=Asia/Karachi:{{ start | date: "%Y%m%dT%l%M%S" }}
+DTEND;TZID=Asia/Karachi:{{ end | date: "%Y%m%dT%l%M%S" }}
+SUMMARY:{{ activity.title }}
+LOCATION:{{activity.location}}
+DESCRIPTION:{{ activity.notes }}
+END:VEVENT
+{% endfor -%}
+END:VCALENDAR
