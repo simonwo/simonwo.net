@@ -7,7 +7,7 @@ PRODID:-//hacksw/handcal//NONSGML v1.0//EN
 {%- if activity.pickup %}
 BEGIN:VEVENT
 {% capture pickup %}{{activity.day}}T{{activity.pickup}}{% endcapture -%}
-UID:{{ pickup | date: "%s" }}@wedding.{{ site.email | split: "@" | last }}
+UID:pickup-{{ pickup | date: "%s" }}@wedding.{{ site.email | split: "@" | last }}
 DTSTAMP;TZID=Asia/Karachi:{{ pickup | date: "%Y%m%dT%l%M%S" }}
 ORGANIZER;CN={{ site.author }}:MAILTO:{{ site.email }}
 DTSTART;TZID=Asia/Karachi:{{ pickup | date: "%Y%m%dT%l%M%S" }}
@@ -19,7 +19,7 @@ END:VEVENT
 BEGIN:VEVENT
 {% capture start %}{{activity.day}}T{{activity.start}}{% endcapture -%}
 {%- capture end %}{{activity.day}}T{{activity.end}}{% endcapture -%}
-UID:{{ start | date: "%s" }}@wedding.{{ site.email | split: "@" | last }}
+UID:activity-{{ start | date: "%s" }}@wedding.{{ site.email | split: "@" | last }}
 DTSTAMP:{{ start | date: "%Y%m%dT%l%M%S" }}
 ORGANIZER;CN={{ site.author }}:MAILTO:{{ site.email }}
 DTSTART;TZID=Asia/Karachi:{{ start | date: "%Y%m%dT%l%M%S" }}
