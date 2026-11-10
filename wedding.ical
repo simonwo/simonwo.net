@@ -15,6 +15,11 @@ DTEND;TZID=/Asia/Karachi:{{ pickup | date: "%Y%m%dT%H%M%S" }}
 SUMMARY:Pickup for {{ activity.title }}
 LOCATION:Raya Hotel
 DESCRIPTION:All guests to wait outside the main courtyard (where the fountain is) facing the car park. A mini coach will pick you up
+BEGIN:VALARM
+TRIGGER:-PT10M
+ACTION:DISPLAY
+DESCRIPTION:Pickup from courtyard in 10 minutes
+END:VALARM
 END:VEVENT
 {%- endif %}
 BEGIN:VEVENT
