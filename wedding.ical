@@ -19,7 +19,7 @@ END:VEVENT
 {%- endif %}
 BEGIN:VEVENT
 {% capture start %}{{activity.day}}T{{activity.start}}:00{% endcapture -%}
-{%- capture end %}{{activity.day}}T{{activity.end}}:00{% endcapture -%}
+{%- capture end %}{{activity.day}}T{% if activity.end %}{{activity.end}}{% else %}23:59{% endif %}:00{% endcapture -%}
 UID:activity-{{ start | date: "%s" }}@wedding.{{ site.email | split: "@" | last }}
 DTSTAMP:{{ start | date: "%Y%m%dT%H%M%S" }}
 ORGANIZER;CN={{ site.author }}:MAILTO:{{ site.email }}
@@ -27,7 +27,7 @@ DTSTART;TZID=/Asia/Karachi:{{ start | date: "%Y%m%dT%H%M%S" }}
 DTEND;TZID=/Asia/Karachi:{{ end | date: "%Y%m%dT%H%M%S" }}
 SUMMARY:{{ activity.title }}
 {% if activity.location %}LOCATION:{{activity.location}}{% endif %}
-DESCRIPTION:{{ activity.notes | newline_to_br | split: "<br />" | join: "\n" | strip_newlines }} {{start}}
+DESCRIPTION:{{ activity.notes | newline_to_br | split: "<br />" | join: "\n" | strip_newlines }}
 END:VEVENT
 {% endfor -%}
 END:VCALENDAR
