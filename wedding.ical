@@ -4,9 +4,9 @@ BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//hacksw/handcal//NONSGML v1.0//EN
 {% for activity in site.data.wedding -%}
-{%- if activity.pickup %}
+{%- if activity.pickup -%}
 BEGIN:VEVENT
-{% capture pickup %}{{activity.day}}T{{activity.pickup}}{% endcapture -%}
+{%- capture pickup %}{{activity.day}}T{{activity.pickup}}{% endcapture -%}
 UID:pickup-{{ pickup | date: "%s" }}@wedding.{{ site.email | split: "@" | last }}
 DTSTAMP;TZID=/Asia/Karachi:{{ pickup | date: "%Y%m%dT%l%M%S" }}
 ORGANIZER;CN={{ site.author }}:MAILTO:{{ site.email }}
@@ -26,7 +26,7 @@ DTSTART;TZID=/Asia/Karachi:{{ start | date: "%Y%m%dT%l%M%S" }}
 DTEND;TZID=/Asia/Karachi:{{ end | date: "%Y%m%dT%l%M%S" }}
 SUMMARY:{{ activity.title }}
 LOCATION:{{activity.location}}
-DESCRIPTION:{{ activity.notes | newline_to_br | split: "<br />" | join: "\n" }}
+DESCRIPTION:{{ activity.notes | newline_to_br | split: "<br />" | join: "\n" | strip_newlines }}
 END:VEVENT
 {% endfor -%}
 END:VCALENDAR
