@@ -11,6 +11,7 @@ UID:pickup-{{ pickup | date: "%s" }}@wedding.{{ site.email | split: "@" | last }
 DTSTAMP;TZID=/Asia/Karachi:{{ pickup | date: "%Y%m%dT%H%M%S" }}
 ORGANIZER;CN={{ site.author }}:MAILTO:{{ site.email }}
 DTSTART;TZID=/Asia/Karachi:{{ pickup | date: "%Y%m%dT%H%M%S" }}
+DTEND;TZID=/Asia/Karachi:{{ pickup | date: "%Y%m%dT%H%M%S" }}
 SUMMARY:Pickup for {{ activity.title }}
 LOCATION:Raya Hotel
 DESCRIPTION:All guests to wait outside the main courtyard (where the fountain is) facing the car park. A mini coach will pick you up
