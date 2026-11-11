@@ -27,8 +27,8 @@
 
 - title: Shopping
   day: 2026-11-11
-  pickup: "13:00"
-  start: "13:30"
+  pickup: "13:30"
+  start: "14:00"
   end: "15:30"
   location: Dolmen Mall 
   notes: >
